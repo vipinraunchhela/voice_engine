@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <section class="body-container">
+  <h2>Voice engine</h2>
+  <div class="tab-view">
+    <ul>
+      <li class="active">Usage Metering Tools(1200)</li>
+      <li>Group(4)</li>
+      <li>Allowance(8)</li>
+      <li>Call Action(3)</li>
+      <li>Threshold(4)</li>
+    </ul>
+  </div>
+    <div class="filters-row">
+      <div class="search">
+        <input [(ngModel)]="query" placeholder="Search">
+        <span  *ngIf="query" class="clear-search" (click)="emptyFiled()">x</span>
+        <div class="search-items" *ngIf="query">
+          <div class="search-list">
+            <span class="search-heading">Rule (15)</span>
+            <div class="scroll-section">
+              <div (click)="searchForRuleName(item.ruleName)"  class="search-list-item"
+                   *ngFor="let item of items | search:'id,ruleName':query; let i = index">{{item.ruleName}}</div>
+            </div>
+          </div>
+          <div class="search-list">
+              <span class="search-heading">Originating From/Terminating To</span>
+            <div class="scroll-section">
+              <div class="search-list-item" *ngFor="let item1 of originating | search:'id,ruleName':query">{{item1.ruleName}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="action-items">
+        <div><span class="icon-filter"></span></div>
+        <div class="click-to-action" (click)="showRules()" >Add Rules</div>
+      </div>
+    </div>
+  <app-usage-meeting [showCreateRule]="showCreateRule"></app-usage-meeting>
+
+  <router-outlet></router-outlet>
+  </section>
+</div>

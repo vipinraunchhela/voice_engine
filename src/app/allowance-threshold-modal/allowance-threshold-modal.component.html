@@ -1,0 +1,51 @@
+<ng-template #content let-modal>
+<div class="allowance-threshold">
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h2>Allowance/Threshold Templates</h2>
+  <div class="flex-box">
+    <div class="allowance-template box">
+      <h4>Allowance Templates ({{allowanceList.length}})</h4>
+      <div class="search">
+        <input type="text" placeholder="Search Allowance" />
+      </div>
+      <ul>
+        <li  *ngFor="let template of allowanceList; let i=index" [class.disabled]="template.templatesName == selectedTemplate[i]"
+        >{{template.templatesName}}
+          <span class="select-btn"><input (change)="addToList(template.templatesName, i, $event)" type="checkbox" id="{{template.templatesName}}">
+            <label for="{{template.templatesName}}">Select</label>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="threshold-template box">
+      <h4>Allowance Templates ({{thresholdList.length}})</h4>
+      <div class="search">
+        <input type="text" placeholder="Search Threshold" />
+      </div>
+      <ul>
+        <li *ngFor="let templetelist of thresholdList;">
+{{templetelist.templatesName}}
+          <span class="select-btn"><input type="checkbox" id="{{templetelist.id}}">
+            <label for="{{templetelist.id}}">Select</label>
+          </span>
+        </li>
+      </ul>
+
+    </div>
+    <span class="move-right">
+      <span class="icon-Shape2"></span>
+    </span>
+    <div class="selected-templates">
+      <ul>
+
+        <li *ngFor="let singleTemp of selectedTemplate">{{singleTemp.name}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</ng-template>
+
+
+<button class="btn btn-lg btn-outline-primary" (click)="openLg(content)">Launch demo modal</button>

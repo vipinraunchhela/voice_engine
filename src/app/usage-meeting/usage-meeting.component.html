@@ -1,0 +1,79 @@
+
+<table class="table">
+  <tr class="head-row">
+    <th>Rule Name</th>
+    <th>Originating Form</th>
+    <th>terminating To</th>
+    <th>Allowance/Threshold</th>
+    <th>Priority</th>
+    <th>Application Time</th>
+    <th>Counter Type</th>
+    <th></th>
+  </tr>
+<!--  edit mode-->
+  <tr *ngIf="showCreateRule">
+    <td>
+      <input type="text" placeholder="Enter rule name">
+    </td>
+    <td>
+      <select name="">
+        <option value="">Select</option>
+      </select>
+    </td>
+    <td>
+      <select name="">
+        <option value="">Select</option>
+      </select>
+    </td>
+    <td>
+      Enter
+    </td>
+    <td>
+      <select name="">
+        <option value="">Select</option>
+      </select>
+    </td>
+    <td>
+      <select name="">
+        <option value="">Select</option>
+      </select>
+    </td>
+    <td>
+      <div class="applybtn">Apply</div>
+      <div class="discard">Discard</div>
+    </td>
+    <td></td>
+  </tr>
+  <ng-container *ngFor="let rule of ruleList">
+    <tr>
+    <td>
+      <div class="rule-name">{{rule.ruleName}}</div>
+      <div class="created-date">Created By {{rule.createdBy}}, {{rule.createdDate}}</div>
+    </td>
+    <td>
+      {{rule.originatingFrom}}
+    </td>
+    <td>
+      {{rule.terminateTo}}
+    </td>
+    <td>
+      <span class="hyperlink">{{rule.allowanceThreshold}}</span>
+    </td>
+    <td><span class="hyperlink">{{rule.priority}}</span></td>
+    <td><span class="hyperlink">{{rule.tod}}</span></td>
+    <td><span class="hyperlink">{{rule.counters}}</span></td>
+    <td></td>
+  </tr>
+  </ng-container>
+  <tr>
+    <td colspan="9">
+      <div class="no-data-found">
+        <h5>No Rules Added yet</h5>
+        <p><span class="hyperlink blue" (click)="this.showCreateRule = true">Add</span> your first rules now</p>
+      </div>
+    </td>
+  </tr>
+</table>
+<app-allowance-threshold-modal></app-allowance-threshold-modal>
+
+

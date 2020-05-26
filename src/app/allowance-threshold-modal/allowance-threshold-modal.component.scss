@@ -1,0 +1,109 @@
+.allowance-threshold{
+  width: 930px;
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+  h2{
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-bottom: 18px;
+  }
+  .flex-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h4{
+      background-color: #C3AB7F;
+      padding: 10px 0px 10px 14px;
+      margin: 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: #FFFFFF;
+      line-height: 17px;
+    }
+    .search{
+      padding: 7px;
+      input{
+        width: 100%;
+      }
+    }
+    .box{
+      min-width: 251px;
+      border: 1px solid #E2E1C1;
+      border-radius: 2px;
+      height: 380px;
+      .select-btn{
+        float: right;
+        input{
+          display: none;
+        }
+        input:checked + label{
+          color: #1CAA3B;
+          &:before{
+            content: '\e927';
+            font-family: 'icomoon' !important;
+            height: 20px;
+            width: 20px;
+            margin-right: 3px;
+          }
+        }
+        label{
+          color:#FBA82B;
+        }
+      }
+    }
+    ul{
+      li{
+        display: block;
+        color: #333333;
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 17px;
+        padding: 6px 18px;
+        border-top: 1px solid #E2E1C1;
+        &.disabled{
+          opacity: 0.6;
+        }
+        &:nth-child(even){
+          background-color: #F9F9EA;
+
+        }
+      }
+    }
+  }
+  .selected-templates{
+    border-radius: 2px;
+    background-color: #F9F9EA;
+    padding: 12px;
+    width: 325px;
+    height: 380px;
+
+    ul li,
+    ul li:nth-child(even){
+      background: #fff;
+      color: #333333;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0;
+      line-height: 17px;
+      padding: 11px;
+      border: 0px;
+      margin-bottom: 3px;
+    }
+  }
+  .move-right{
+    background-color: #FBA82B;
+    height: 40px;
+    color: #fff;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
+    line-height: 44px;
+  }
+}
+
+
