@@ -7,8 +7,12 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./allowance-threshold-modal.component.scss']
 })
 export class AllowanceThresholdModalComponent implements OnInit {
-  selectedTemplate = [];
-  closeResult = '';
+
+  selectedAllowanceTemplate = null;
+  selectedThresholdTemplate = null;
+  results = [];
+  pushedAllowance = {};
+  pushedThreshold = {};
   allowanceList = [
     {
       id: 1,
@@ -61,29 +65,31 @@ export class AllowanceThresholdModalComponent implements OnInit {
       templatesName: 'B6-1179',
     }
   ];
-  constructor(private modalService: NgbModal) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  addToList(itemName, i, event) {
-      this.selectedTemplate.push({'name': itemName, 'id': i});
+  addToList(itemName, i) {
+      this.selectedAllowanceTemplate = {'name': itemName, 'id': i};
+      console.log(this.selectedAllowanceTemplate);
   }
-  openLg(content) {
-    this.modalService.open( content, {size: 'lg', windowClass: 'custom-class'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  addToThresholdList(name, i) {
+    this.selectedThresholdTemplate = {'name': name, 'id': i};
+    console.log(this.selectedThresholdTemplate);
+  }
+  addToRule() {
+    this.results.push([this.selectedAllowanceTemplate, this.selectedThresholdTemplate])
+    this.pushedAllowance[this.selectedAllowanceTemplate.id] = true;
+    this.pushedThreshold[this.selectedThresholdTemplate.id] = true;
+    this.selectedAllowanceTemplate = null;
+    this.selectedThresholdTemplate = null;
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+
+  deleteFromResults(selectedResult, i) {
+    this.pushedAllowance[selectedResult[0].id] = false;
+    this.pushedThreshold[selectedResult[1].id] = false;
+    this.results.splice(i, 1);
   }
 }

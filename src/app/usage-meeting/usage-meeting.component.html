@@ -26,12 +26,29 @@
       </select>
     </td>
     <td>
-      Enter
+      <span class="hyperlink" (click)="openLg(content)"> Enter</span>
     </td>
     <td>
-      <select name="">
-        <option value="">Select</option>
-      </select>
+<!--      error-->
+      <div class="input-group" [class.error-section]="showError">
+        <input type="text" class="form-control" placeholder="Enter" [(ngModel)]="priority">
+        <div class="input-group-append">
+          <span class="input-group-text" [ngClass]="priority? 'active' : 'disable'" (click)="showErrorPopover()"
+                ngbTooltip="Check Availability "><span
+            class="icon-tick"></span></span>
+        </div>
+        <div class="change-priority" *ngIf="showError">
+          <h3>Priority already in use by:
+            <div>“VIP Roamers Dubai”</div>
+          </h3>
+          <p>System will assign an available priority automatically based on your preference</p>
+          <ul>
+            <li class="form-group form-check"><input type="radio" name="setpriority" id="higherPriority"><label for="higherPriority">Assign a higher priority</label></li>
+            <li class="form-group form-check"><input type="radio" name="setpriority" id="lowerPriority"><label for="lowerPriority">Assign a lower priority</label></li>
+            <li><span class="assign" (click)="showError = false">Assign</span></li>
+          </ul>
+        </div>
+      </div>
     </td>
     <td>
       <select name="">
@@ -57,7 +74,7 @@
       {{rule.terminateTo}}
     </td>
     <td>
-      <span class="hyperlink">{{rule.allowanceThreshold}}</span>
+      <span class="hyperlink" (click)="openLg(content)"> {{rule.allowanceThreshold}}</span>
     </td>
     <td><span class="hyperlink">{{rule.priority}}</span></td>
     <td><span class="hyperlink">{{rule.tod}}</span></td>
@@ -65,7 +82,7 @@
     <td></td>
   </tr>
   </ng-container>
-  <tr>
+  <tr *ngIf="ruleList.length == 0">
     <td colspan="9">
       <div class="no-data-found">
         <h5>No Rules Added yet</h5>
@@ -74,6 +91,14 @@
     </td>
   </tr>
 </table>
-<app-allowance-threshold-modal></app-allowance-threshold-modal>
 
+<!--Modal-->
+<ng-template #content let-modal>
+  <div class="allowance-threshold">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span class="icon-Combined-Shape-Copy-8"></span>
+    </button>
+    <app-allowance-threshold-modal></app-allowance-threshold-modal>
+  </div>
+</ng-template>
 

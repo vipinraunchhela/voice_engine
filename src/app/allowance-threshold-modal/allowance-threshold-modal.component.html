@@ -1,51 +1,130 @@
-<ng-template #content let-modal>
-<div class="allowance-threshold">
-  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <h2>Allowance/Threshold Templates</h2>
-  <div class="flex-box">
-    <div class="allowance-template box">
-      <h4>Allowance Templates ({{allowanceList.length}})</h4>
-      <div class="search">
-        <input type="text" placeholder="Search Allowance" />
+
+
+    <h2>Allowance/Threshold Templates</h2>
+    <div class="flex-box">
+      <div class="allowance-template box">
+        <h4>Allowance Templates ({{allowanceList.length}})</h4>
+        <div class="search">
+          <input type="text" placeholder="Search Allowance" />
+        </div>
+        <ul>
+          <li  *ngFor="let template of allowanceList; let i=index" [class.disable]="pushedAllowance[template.id]">
+            <ng-template #tipContent let-greeting="greeting">
+              <div class="custom-tooltip-data">
+                <div><span>Name:</span> <strong>A2-1233</strong> </div>
+                <div><span>Periodicity:</span> <strong>Weekly</strong> </div>
+                <div><span>Oroginating Calls:</span> <strong>200</strong> </div>
+                <div><span>Terminating minutes:</span> <strong>500</strong> </div>
+              </div>
+            </ng-template>
+            <span  [ngbTooltip]="tipContent" placement="right">{{template.templatesName}}</span>
+            <span class="select-btn"><input (change)="addToList(template.templatesName, template.id)" type="checkbox" id="{{template.templatesName}}">
+              <label for="{{template.templatesName}}">Select</label>
+            </span>
+          </li>
+        </ul>
       </div>
-      <ul>
-        <li  *ngFor="let template of allowanceList; let i=index" [class.disabled]="template.templatesName == selectedTemplate[i]"
-        >{{template.templatesName}}
-          <span class="select-btn"><input (change)="addToList(template.templatesName, i, $event)" type="checkbox" id="{{template.templatesName}}">
-            <label for="{{template.templatesName}}">Select</label>
-          </span>
-        </li>
-      </ul>
-    </div>
-    <div class="threshold-template box">
-      <h4>Allowance Templates ({{thresholdList.length}})</h4>
-      <div class="search">
-        <input type="text" placeholder="Search Threshold" />
+      <div class="threshold-template box">
+        <h4>Allowance Templates ({{thresholdList.length}})</h4>
+        <div class="search">
+          <input type="text" placeholder="Search Threshold" />
+        </div>
+        <ul>
+          <li *ngFor="let templete of thresholdList; let i=index" [class.disable]="pushedThreshold[templete.id]">
+            <span class="tooltip-view">{{templete.templatesName}}
+
+              <!-- tooltip on mouse hover-->
+            <div class="custom-tooltip">
+              <div>Name: <strong>TH-105</strong> </div>
+              <div class="coloumns">
+                <div class="header">Originating Calls</div>
+                <div class="row-section">
+                  <ul>
+                    <li>Level 1: 80%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+
+                  </ul>
+                  <ul>
+                    <li>Level 2: 10%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                  </ul>
+                  <ul>
+                    <li>Level 3: 10%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="coloumns">
+                <div class="header">Terminating Calls</div>
+                <div class="row-section">
+                  <ul>
+                    <li>Level 1: 80%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                  </ul>
+                  <ul>
+                    <li>Level 2: 10%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="coloumns">
+                <div class="header">Terminating Calls</div>
+                <div class="row-section">
+                  <ul>
+                    <li>Level 1: 80%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                  </ul>
+                  <ul>
+                    <li>Level 2: 10%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="coloumns">
+                <div class="header">Terminating Calls</div>
+                <div class="row-section">
+                  <ul>
+                    <li>Level 1: 80%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                  </ul>
+                  <ul>
+                    <li>Level 2: 10%</li>
+                    <li>SMS to Subscriber<br/>SMS-2200</li>
+                    <li>SMS to Admin<br/>SMS-2200<br/>4 Recipients </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+              <!-- tooltip close-->
+            </span>
+            <span class="select-btn"><input type="checkbox" (change)="addToThresholdList(templete.templatesName, templete.id)" id="{{templete.id}}">
+              <label for="{{templete.id}}">Select</label>
+            </span>
+          </li>
+        </ul>
       </div>
-      <ul>
-        <li *ngFor="let templetelist of thresholdList;">
-{{templetelist.templatesName}}
-          <span class="select-btn"><input type="checkbox" id="{{templetelist.id}}">
-            <label for="{{templetelist.id}}">Select</label>
-          </span>
-        </li>
-      </ul>
-
+      <span class="move-right" (click)="addToRule()"
+            [class.disable]="!selectedAllowanceTemplate || !selectedThresholdTemplate">
+        <span class="icon-Shape2"></span>
+      </span>
+      <div class="selected-templates">
+        <ul>
+          <li *ngFor="let selectedResult of results; let i=index">
+            {{selectedResult[0].name}}|{{selectedResult[1].name}}
+            <span class="icon-bin" (click)="deleteFromResults(selectedResult, i)" ></span>
+          </li>
+          <li *ngIf="results.length ==0" class="no-data-found">No Allowance Threshold pairs slected yet</li>
+        </ul>
+      </div>
     </div>
-    <span class="move-right">
-      <span class="icon-Shape2"></span>
-    </span>
-    <div class="selected-templates">
-      <ul>
 
-        <li *ngFor="let singleTemp of selectedTemplate">{{singleTemp.name}}</li>
-      </ul>
-    </div>
-  </div>
-</div>
-</ng-template>
-
-
-<button class="btn btn-lg btn-outline-primary" (click)="openLg(content)">Launch demo modal</button>

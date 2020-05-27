@@ -142,8 +142,30 @@
   cursor: pointer;
 }
 .custom-class{
-  .modal-content{
-    width: 970px;
-    padding: 15px 20px;
+  .modal-lg{
+    max-width: 1000px;
+    .modal-content {
+      padding: 15px 20px;
+    }
   }
+}
+.tooltip{
+  .tooltip-inner{
+    background: #fff;
+    color: #000;
+    min-width: 200px;
+  }
+  &.bs-tooltip-top .arrow:before{
+    border-top-color: #fff;
+  }
+  &.bs-tooltip-bottom .arrow:before{
+    border-bottom-color: #fff;
+  }
+  &.bs-tooltip-left .arrow:before{
+    border-left-color: #fff;
+  }
+  &.bs-tooltip-right .arrow:before{
+    border-right-color: #fff;
+  }
+
 }

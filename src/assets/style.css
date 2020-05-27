@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?p71qmf');
-  src:  url('fonts/icomoon.eot?p71qmf#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?p71qmf') format('truetype'),
-    url('fonts/icomoon.woff?p71qmf') format('woff'),
-    url('fonts/icomoon.svg?p71qmf#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?isitui');
+  src:  url('fonts/icomoon.eot?isitui#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?isitui') format('truetype'),
+    url('fonts/icomoon.woff?isitui') format('woff'),
+    url('fonts/icomoon.svg?isitui#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -165,8 +165,14 @@
 .icon-spinner10:before {
   content: "\e983";
 }
+.icon-pencil:before {
+  content: "\e92b";
+}
 .icon-bell:before {
   content: "\e951";
+}
+.icon-bin:before {
+  content: "\e9ac";
 }
 .icon-gift:before {
   content: "\e99f";

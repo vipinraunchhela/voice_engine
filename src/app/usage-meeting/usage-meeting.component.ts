@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-usage-meeting',
   templateUrl: './usage-meeting.component.html',
@@ -6,6 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class UsageMeetingComponent implements OnInit {
   @Input() showCreateRule: boolean;
+  priority: string;
+  showError = false;
+  closeResult = '';
   ruleList = [
     {
       id: 1,
@@ -59,9 +63,31 @@ export class UsageMeetingComponent implements OnInit {
   ];
 
 
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
   }
 
+  showErrorPopover() {
+    this.showError = !this.showError;
+  }
+
+
+  openLg(content) {
+    this.modalService.open( content, {size: 'lg', windowClass: 'custom-class'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 }
