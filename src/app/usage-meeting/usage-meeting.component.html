@@ -13,17 +13,85 @@
 <!--  edit mode-->
   <tr *ngIf="showCreateRule">
     <td>
-      <input type="text" placeholder="Enter rule name">
+      <input type="text" class="rule-name-input" placeholder="Enter rule name">
     </td>
     <td>
-      <select name="">
-        <option value="">Select</option>
-      </select>
+      <ng-select
+        class="ng-dropdown-select ng-originating"
+        [items]="people"
+        [multiple]="true"
+        bindLabel="name"
+        groupBy="countries"
+        [selectableGroup]="true"
+        [virtualScroll]="true"
+        [selectableGroupAsModel]="false"
+        [closeOnSelect]="false"
+        placeholder="Select"
+        bindValue="id"
+        [(ngModel)]="selectedPeople">
+        <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+          <div class="custom-control custom-checkbox">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" class="custom-control-input"/>
+            <label class="form-check-label ml-2 custom-control-label">{{item.countries}}</label>
+          </div>
+        </ng-template>
+        <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+          <div class="ng-value" *ngFor="let item of items | slice:0:1">
+                                        <span class="ng-value-label ng-label-custom" title="{{item.name}}">
+                                          <span class="text-val"> {{item.name}}</span>
+                                        </span>
+            <span class="ng-value-icon right"  (click)="clear(item)">×</span>
+          </div>
+          <div class="ng-value" *ngIf="items.length > 1">
+                                        <span class="ng-value-label">+ {{items.length - 1}}</span>
+          </div>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item"  let-search="searchTerm" let-item$="item$" let-index="index">
+          <div class="custom-control custom-checkbox">
+          <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" class="custom-control-input"/>
+          <label class="form-check-label ml-2 custom-control-label"  [ngOptionHighlight]="search">{{item.name}}</label>
+          </div>
+        </ng-template>
+      </ng-select>
     </td>
     <td>
-      <select name="">
-        <option value="">Select</option>
-      </select>
+        <ng-select
+          class="ng-dropdown-select ng-originating"
+          [items]="terminating"
+          [multiple]="true"
+          bindLabel="name"
+          groupBy="countries"
+          [selectableGroup]="true"
+          [virtualScroll]="true"
+          [selectableGroupAsModel]="false"
+          [closeOnSelect]="false"
+          placeholder="Select"
+          bindValue="id"
+          [(ngModel)]="selectedTerminating">
+          <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+            <div class="custom-control custom-checkbox">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" class="custom-control-input"/>
+              <label class="form-check-label ml-2 custom-control-label">{{item.countries}}</label>
+            </div>
+          </ng-template>
+          <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+            <div class="ng-value" *ngFor="let item of items | slice:0:1">
+                                        <span class="ng-value-label ng-label-custom" title="{{item.name}}">
+                                          <span class="text-val"> {{item.name}}</span>
+                                        </span>
+              <span class="ng-value-icon right"  (click)="clear(item)">×</span>
+            </div>
+            <div class="ng-value" *ngIf="items.length > 1">
+              <span class="ng-value-label">+ {{items.length - 1}}</span>
+            </div>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item"  let-search="searchTerm" let-item$="item$" let-index="index">
+            <div class="custom-control custom-checkbox">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" class="custom-control-input"/>
+              <label class="form-check-label ml-2 custom-control-label"  [ngOptionHighlight]="search">{{item.name}}</label>
+            </div>
+          </ng-template>
+        </ng-select>
     </td>
     <td>
       <span class="hyperlink" (click)="openLg(content)"> Select</span>

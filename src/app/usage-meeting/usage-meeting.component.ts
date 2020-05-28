@@ -66,6 +66,113 @@ export class UsageMeetingComponent implements OnInit {
     }
   ];
 
+  selectedPeople = [];
+  selectedTerminating = [];
+  people = [
+    {
+      'id': '5a15b13c36e7a7f00cf0d7cb',
+      'name': 'Karyn Wright',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c2340978ec3d2c0ea',
+      'name': 'Rochelle Estes',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c663ea0af9ad0dae8',
+      'name': 'Mendoza Ruiz',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13cc9eeb36511d65acf',
+      'name': 'Russia',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c728cd3f43cc0fe8a',
+      'name': 'France',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13ca51b0aaf8a99c05a',
+      'name': 'Portugal',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13cc3b9381ffcb1d6f7',
+      'name': 'Australia',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13ce58cb6ff62c65164',
+      'name': 'USA',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c38fd49fefea8db80',
+      'name': 'China',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c9680913c470eb8fd',
+      'name': 'India',
+      'countries': 'Select all',
+    }
+  ];
+  terminating = [
+    {
+      'id': '5a15b13c36e7a7f00cf0d7cb',
+      'name': 'Karyn Wright',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c2340978ec3d2c0ea',
+      'name': 'Rochelle Estes',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c663ea0af9ad0dae8',
+      'name': 'Mendoza Ruiz',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13cc9eeb36511d65acf',
+      'name': 'Russia',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c728cd3f43cc0fe8a',
+      'name': 'France',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13ca51b0aaf8a99c05a',
+      'name': 'Portugal',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13cc3b9381ffcb1d6f7',
+      'name': 'Australia',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13ce58cb6ff62c65164',
+      'name': 'USA',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c38fd49fefea8db80',
+      'name': 'China',
+      'countries': 'Select all',
+    },
+    {
+      'id': '5a15b13c9680913c470eb8fd',
+      'name': 'India',
+      'countries': 'Select all',
+    }
+  ];
+
 
   constructor(private modalService: NgbModal) {}
 
