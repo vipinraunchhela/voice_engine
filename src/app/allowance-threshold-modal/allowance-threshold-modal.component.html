@@ -30,8 +30,8 @@
           <input type="text" placeholder="Search Threshold" />
         </div>
         <ul>
-          <li *ngFor="let templete of thresholdList; let i=index" [class.disable]="pushedThreshold[templete.id]">
-            <span class="tooltip-view">{{templete.templatesName}}
+          <li *ngFor="let template of thresholdList; let i=index" [class.disable]="pushedThreshold[template.id]">
+            <span class="tooltip-view">{{template.templatesName}}
 
               <!-- tooltip on mouse hover-->
             <div class="custom-tooltip">
@@ -107,8 +107,8 @@
             </div>
               <!-- tooltip close-->
             </span>
-            <span class="select-btn"><input type="checkbox" (change)="addToThresholdList(templete.templatesName, templete.id)" id="{{templete.id}}">
-              <label for="{{templete.id}}">Select</label>
+            <span class="select-btn"><input type="checkbox" (change)="addToThresholdList(template.templatesName, template.id)" id="{{template.id}}">
+              <label for="{{template.id}}">Select</label>
             </span>
           </li>
         </ul>
@@ -127,4 +127,5 @@
         </ul>
       </div>
     </div>
+    <div class="modal-footer"><button class="btn btn-primary" (click)="saveData()">Done</button> </div>
 

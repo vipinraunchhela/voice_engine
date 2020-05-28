@@ -1,13 +1,13 @@
 
 <table class="table">
   <tr class="head-row">
-    <th>Rule Name</th>
+    <th><span class="shorting">Rule Name <span class="icon-sort"></span></span></th>
     <th>Originating Form</th>
     <th>terminating To</th>
-    <th>Allowance/Threshold</th>
-    <th>Priority</th>
-    <th>Application Time</th>
-    <th>Counter Type</th>
+    <th><span class="shorting">Allowance/Threshold <span class="icon-sort"></span></span></th>
+    <th><span class="shorting">Priority <span class="icon-sort"></span></span></th>
+    <th><span class="shorting">Application Time <span class="icon-sort"></span></span></th>
+    <th><span class="shorting">Counter Type <span class="icon-sort"></span></span></th>
     <th></th>
   </tr>
 <!--  edit mode-->
@@ -26,16 +26,17 @@
       </select>
     </td>
     <td>
-      <span class="hyperlink" (click)="openLg(content)"> Enter</span>
+      <span class="hyperlink" (click)="openLg(content)"> Select</span>
     </td>
     <td>
 <!--      error-->
       <div class="input-group" [class.error-section]="showError">
         <input type="text" class="form-control" placeholder="Enter" [(ngModel)]="priority">
-        <div class="input-group-append">
+        <div class="input-group-append" [class.done]="verified">
           <span class="input-group-text" [ngClass]="priority? 'active' : 'disable'" (click)="showErrorPopover()"
-                ngbTooltip="Check Availability "><span
-            class="icon-tick"></span></span>
+                ngbTooltip="Check Availability">
+            <span class="icon-tick"></span>
+          </span>
         </div>
         <div class="change-priority" *ngIf="showError">
           <h3>Priority already in use by:
@@ -45,7 +46,7 @@
           <ul>
             <li class="form-group form-check"><input type="radio" name="setpriority" id="higherPriority"><label for="higherPriority">Assign a higher priority</label></li>
             <li class="form-group form-check"><input type="radio" name="setpriority" id="lowerPriority"><label for="lowerPriority">Assign a lower priority</label></li>
-            <li><span class="assign" (click)="showError = false">Assign</span></li>
+            <li><span class="assign" (click)="(showError = false) || (verified = true)">Assign</span></li>
           </ul>
         </div>
       </div>
@@ -56,12 +57,13 @@
       </select>
     </td>
     <td>
-      <div class="applybtn">Apply</div>
-      <div class="discard">Discard</div>
+      <div class="applybtn" (click)="clearfields()">Apply</div>
+      <div class="discard" (click)="clearfields()" >Discard</div>
     </td>
-    <td></td>
+    <td>
+    </td>
   </tr>
-  <ng-container *ngFor="let rule of ruleList">
+  <ng-container *ngFor="let rule of ruleList; let i=index">
     <tr>
     <td>
       <div class="rule-name">{{rule.ruleName}}</div>
@@ -74,12 +76,51 @@
       {{rule.terminateTo}}
     </td>
     <td>
-      <span class="hyperlink" (click)="openLg(content)"> {{rule.allowanceThreshold}}</span>
+      <ng-template #tipContent let-greeting="greeting">
+        <div class="custom-tooltip-data">
+          <div><span>Name:</span> <strong>A2-1233</strong> </div>
+          <div><span>Periodicity:</span> <strong>Weekly</strong> </div>
+          <div><span>Oroginating Calls:</span> <strong>200</strong> </div>
+          <div><span>Terminating minutes:</span> <strong>500</strong> </div>
+        </div>
+      </ng-template>
+
+      <span class="hyperlink">
+        <span [ngbTooltip]="tipContent">{{rule.allowanceThreshold}}</span>/
+        <span [ngbTooltip]="tipContentThreshhold" tooltipClass="threshhold-content">{{rule.allowanceThreshold}}</span>
+      </span>
+      <ng-template #tipContentThreshhold let-greeting="greeting">
+        <div class="">
+          <div class="head-line"><span>Name:</span> <strong>A2-1233</strong> </div>
+          <div class="coloumns">
+            <div><span>Originating Calls</span> <strong>Levels: 4</strong> </div>
+            <div><span>Terminating Calls</span> <strong>Levels: 2</strong> </div>
+            <div><span>Originating Minutes</span> <strong>Levels: 1</strong> </div>
+            <div><span>Terminating Minutes</span> <strong>Levels: 5</strong> </div>
+          </div>
+        </div>
+      </ng-template>
     </td>
     <td><span class="hyperlink">{{rule.priority}}</span></td>
     <td><span class="hyperlink">{{rule.tod}}</span></td>
     <td><span class="hyperlink">{{rule.counters}}</span></td>
-    <td></td>
+    <td class="relative">
+      <span class="icon-action_dots"  (click)="showPopover(i)"></span>
+      <div class="custom-popover" *ngIf="i == selectedRow && showeditOptions">
+        <div><span class="hyperlink" (click)="edit()" >Edit</span></div>
+        <div><span class="hyperlink" (click)="deleterow(i)" >Delete</span></div>
+        <div class="toggle-switch">
+          <div>Inactive</div>
+          <div class="switch_button custom">
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div></div>Active
+        </div>
+      </div>
+    </td>
   </tr>
   </ng-container>
   <tr *ngIf="ruleList.length == 0">
@@ -98,7 +139,7 @@
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span class="icon-Combined-Shape-Copy-8"></span>
     </button>
-    <app-allowance-threshold-modal></app-allowance-threshold-modal>
+    <app-allowance-threshold-modal (closeModal)="closeModal($event)"></app-allowance-threshold-modal>
   </div>
 </ng-template>
 

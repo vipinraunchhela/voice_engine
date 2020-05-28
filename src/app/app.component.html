@@ -1,7 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
   <section class="body-container">
-  <h2>Voice engine</h2>
+  <h2>Voice engine
+  <div class="header-dropdown">
+    <span>Home</span>
+    <select>
+      <option>Claro, Argentina</option>
+      <option>America</option>
+    </select>
+  </div>
+  </h2>
   <div class="tab-view">
     <ul>
       <li class="active">Usage Metering Tools(1200)</li>
@@ -13,9 +21,9 @@
   </div>
     <div class="filters-row">
       <div class="search">
-        <input [(ngModel)]="query" placeholder="Search">
+        <input [(ngModel)]="query" placeholder="Search" (keydown)="hideSearchdropDown = true">
         <span  *ngIf="query" class="clear-search" (click)="emptyFiled()">x</span>
-        <div class="search-items" *ngIf="query">
+        <div class="search-items" *ngIf="query && hideSearchdropDown">
           <div class="search-list">
             <span class="search-heading">Rule (15)</span>
             <div class="scroll-section">

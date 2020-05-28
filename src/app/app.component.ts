@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   query: string;
   showCreateRule = false;
-  hideSearchdropDown = false;
+  hideSearchdropDown = true;
   items = [
     {
       id: 1,

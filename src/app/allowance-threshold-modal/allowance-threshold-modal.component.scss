@@ -190,37 +190,8 @@
   }
 
 
- .allowance-template {
-   .custom-tooltip-data{
-     white-space: nowrap;
-   }
-   ::ng-deep .tooltip {
-     background: #fff;
-     &.show{
-       opacity: 1;
-       box-shadow: 0 2px 4px 0 rgba(143,143,143,0.5);
-     }
-     .tooltip-inner {
-       min-width: 230px;
-       max-width: 230px;
-       text-align: right;
-       strong{
-         width: 100px;
-         text-align: left;
-         display: inline-block;
-         color: #3A3A3A;
-         font-size: 12px;
-         font-weight: bold;
-         letter-spacing: 0;
-         line-height: 19px;
-         margin-left: 6px;
-       }
-       span{
-         color: #A5A5A5;
-         font-size: 12px;
-         letter-spacing: 0;
-         line-height: 17px;
-       }
-     }
-   }
+ .modal-footer{
+   border: 0px;
+   justify-content: space-between;
+   padding: 20px 0 10px;
  }

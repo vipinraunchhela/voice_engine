@@ -7,9 +7,13 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsageMeetingComponent implements OnInit {
   @Input() showCreateRule: boolean;
+  showeditOptions = false;
+  selectedRow : Number;
   priority: string;
   showError = false;
   closeResult = '';
+  verified = false;
+  modalReference: any;
   ruleList = [
     {
       id: 1,
@@ -81,7 +85,7 @@ export class UsageMeetingComponent implements OnInit {
     });
   }
 
-  private getDismissReason(reason: any): string {
+   getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -89,5 +93,27 @@ export class UsageMeetingComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  showPopover(i) {
+    this.selectedRow = i;
+    this.showeditOptions = !this.showeditOptions;
+  }
+
+  deleterow(i) {
+    this.ruleList.splice(i, 1);
+    this.showeditOptions = !this.showeditOptions;
+  }
+
+  edit() {
+    this.showCreateRule = true;
+    this.showeditOptions = !this.showeditOptions;
+  }
+  closeModal(msg) {
+    this.modalReference.close();
+  }
+
+  clearfields() {
+    this.showCreateRule = false;
   }
 }

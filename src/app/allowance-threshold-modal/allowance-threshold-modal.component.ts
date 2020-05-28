@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./allowance-threshold-modal.component.scss']
 })
 export class AllowanceThresholdModalComponent implements OnInit {
-
+  @Output() closeModal = new EventEmitter();
   selectedAllowanceTemplate = null;
   selectedThresholdTemplate = null;
   results = [];
@@ -91,5 +91,9 @@ export class AllowanceThresholdModalComponent implements OnInit {
     this.pushedAllowance[selectedResult[0].id] = false;
     this.pushedThreshold[selectedResult[1].id] = false;
     this.results.splice(i, 1);
+  }
+
+  saveData() {
+    this.closeModal.emit('save data');
   }
 }
