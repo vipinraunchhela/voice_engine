@@ -151,8 +151,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
     }
   ];
   selectedDaysFilter = [];
-  amSelectedHrs = [];
-  pmSelectedHrs = [];
+  selectedHours = [];
 
   constructor(private modalService: NgbModal,
               private elementRef: ElementRef) {
@@ -181,8 +180,8 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
     this.isHoursDropdown = !this.isHoursDropdown;
   }
 
-  onAmSelection(selected, timeSlot) {
-    this.amSelectedHrs = [];
+  onHourSelection(selected, timeSlot) {
+    this.selectedHours = [];
     for (const selectedTime of this.hours) {
       if (selectedTime.id === selected.id) {
         if (timeSlot === 'am') {
@@ -192,7 +191,6 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
         }
       }
     }
-    console.log(this.hours);
   }
 
   onSave() {
@@ -247,13 +245,5 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
     }
     this.selectedDaysFilter.splice(index, 1);
   }
-
-  // @HostListener('document:click', ['$event'])
-  // closeDropdowns(event) {
-  //   if (this.elementRef && this.elementRef.nativeElement.contains(event.target)) {
-  //     this.isHoursDropdown = false;
-  //     this.isDaysDropdown = false;
-  //   }
-  // }
 
 }

@@ -38,11 +38,11 @@
               <li *ngFor="let hr of hours; let i = index" [attr.id]="i" (click)="chips()">
                 <span class="time_slot">{{hr.duration}}</span>
                 <label class="for_checkbox">
-                  <input type="checkbox" class="for_am checkbox" [checked]="hr.amChecked" (click)="onAmSelection(hr, 'am')">
+                  <input type="checkbox" class="for_am checkbox" [checked]="hr.amChecked" (click)="onHourSelection(hr, 'am')">
                   <div class="custom_checkbox">{{hr.am}}</div>
                 </label>
                 <label class="for_checkbox">
-                  <input type="checkbox" class="for_am checkbox" [checked]="hr.pmChecked" (click)="onAmSelection(hr, 'pm')">
+                  <input type="checkbox" class="for_am checkbox" [checked]="hr.pmChecked" (click)="onHourSelection(hr, 'pm')">
                   <div class="custom_checkbox">{{hr.pm}}</div>
                 </label>
               </li>
