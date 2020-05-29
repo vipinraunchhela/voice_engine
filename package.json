@@ -21,7 +21,7 @@
     "@angular/router": "~8.0.1",
     "@highcharts/map-collection": "^1.1.2",
     "@ng-bootstrap/ng-bootstrap": "^4.2.2",
-    "@ng-select/ng-option-highlight": "0.0.5",
+    "@ng-select/ng-option-highlight": "0.0.4",
     "@ng-select/ng-select": "^3.7.3",
     "angular7-csv": "^0.2.12",
     "animate.css": "^3.7.2",
