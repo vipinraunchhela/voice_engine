@@ -39,11 +39,62 @@
       display: flex;
       align-items: center;
       cursor: pointer;
+
+      &.ng-dropdown-select {
+        outline: none;
+        padding: 0 !important;
+        border: 0 !important;
+
+        ::ng-deep {
+          .ng-placeholder{
+            color: #A5A5A5;
+            font-size: 12px;
+            line-height: 18px;
+          }
+          .ng-select-container {
+            border: 1px solid #E6E6E6 !important;
+          }
+
+          .ng-dropdown-panel-items.scroll-host {
+            max-height: 160px !important;
+            width: 327px;
+          }
+
+          .ng-option {
+            padding: 0 !important;
+
+            .custom-control {
+              &.custom-checkbox {
+                min-height: auto;
+                margin-bottom: 2px;
+              }
+            }
+
+            &:first-child {
+              .custom-control {
+                &.custom-checkbox {
+                  margin-top: 2px;
+                }
+              }
+            }
+
+            &:last-child {
+              .custom-control {
+                &.custom-checkbox {
+                  margin-bottom: 0;
+                }
+              }
+            }
+
+
+          }
+        }
+      }
     }
   }
 }
 
-.dropdown_list_wrap{
+.dropdown_list_wrap {
   max-height: 158px;
   width: 327px;
   border: 1px solid #E2E1C1;
@@ -66,16 +117,19 @@
   li {
     padding-bottom: 4px;
     display: flex;
+
     .time_slot {
       color: #333333;
       font-size: 12px;
       line-height: 17px;
       width: 66px;
       display: inline-block;
+
       + .for_checkbox {
         margin-right: 16px;
       }
     }
+
     &:last-child {
       padding-bottom: 0;
     }
@@ -84,7 +138,7 @@
 
 .chip {
   height: 19px;
-  width: 107px;
+  max-width: 109px;
   border-radius: 2px;
   background-color: #E6E6E6;
   color: #333333;
@@ -95,12 +149,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  &:last-child {margin: 0;}
+
+  &:last-child {
+    margin: 0;
+  }
+
   .icon-cross_tags {
     height: 6px;
     width: 6px;
     color: #A5A5A5;
     font-size: 6px;
     cursor: pointer;
+    margin-left: 4px;
   }
 }
+
+
+
+

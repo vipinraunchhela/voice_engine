@@ -12,10 +12,49 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
   isApplicableTimeWindow = false;
   isDaysDropdown = false;
   isHoursDropdown = false;
-  days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  hours = [
+  selectedDays = [];
+  days = [
     {
       'id': '1',
+      'day': 'Mon',
+      'days': 'Select all',
+    },
+    {
+      'id': '2',
+      'day': 'Tue',
+      'days': 'Select all',
+    },
+    {
+      'id': '3',
+      'day': 'Wed',
+      'days': 'Select all',
+    },
+    {
+      'id': '4',
+      'day': 'Thu',
+      'days': 'Select all',
+    },
+    {
+      'id': '5',
+      'day': 'Fri',
+      'days': 'Select all',
+    },
+    {
+      'id': '6',
+      'day': 'Sat',
+      'days': 'Select all',
+    },
+    {
+      'id': '7',
+      'day': 'Sun',
+      'days': 'Select all',
+    }
+  ];
+
+
+  hours = [
+    {
+      'id': 0,
       'duration': '0-1 Hr',
       'am': 'AM',
       'amChecked': false,
@@ -23,7 +62,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '2',
+      'id': 1,
       'duration': '1-2 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -31,7 +70,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '3',
+      'id': 2,
       'duration': '2-3 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -39,7 +78,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '4',
+      'id': 3,
       'duration': '3-4 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -47,7 +86,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '5',
+      'id': 4,
       'duration': '4-5 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -55,7 +94,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '6',
+      'id': 5,
       'duration': '5-6 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -63,7 +102,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '7',
+      'id': 6,
       'duration': '6-7 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -71,7 +110,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '8',
+      'id': 7,
       'duration': '7-8 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -79,7 +118,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '9',
+      'id': 8,
       'duration': '8-9 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -87,7 +126,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '10',
+      'id': 9,
       'duration': '9-10 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -95,7 +134,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '11',
+      'id': 10,
       'duration': '10-11 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -103,7 +142,7 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       'pmChecked': false
     },
     {
-      'id': '12',
+      'id': 11,
       'duration': '11-12 Hrs',
       'am': 'AM',
       'amChecked': false,
@@ -152,31 +191,20 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
           selectedTime.pmChecked = !selectedTime.pmChecked;
         }
       }
-      // if (selectedTime.id === selected.id) {
-      //   selectedTime.amChecked = !selectedTime.amChecked;
-      // }
-      // if (selectedTime.amChecked === true) {
-      //   this.amSelectedHrs.push({
-      //                             'duration': selectedTime.duration,
-      //                             'am': selectedTime.amChecked
-      //                           });
-      // }
     }
     console.log(this.hours);
   }
 
   onSave() {
-    this.selectedDaysFilter = [];
-    this.selectedDaysFilter.push(this.amSelectedHrs, this.pmSelectedHrs);
     this.modalService.dismissAll();
-    console.log(this.selectedDaysFilter);
   }
 
   chips() {
     let chipsData = '';
     let maximumChecked = 0;
+    let maxSelected = 0;
     for (const hour of this.hours) {
-      if (maximumChecked <= 3) {
+      if (maximumChecked < 2) {
         if (hour.amChecked || hour.pmChecked) {
           chipsData += hour.duration + ' ';
         }
@@ -200,13 +228,24 @@ export class ApplicabletimeTodWodModalComponent implements OnInit {
       }
     }
     if (maximumChecked >= 3) {
-      chipsData += '+' + maximumChecked;
+      maxSelected = maximumChecked - 2;
+      chipsData += '+' + maxSelected;
     }
 
     const arrayChips = chipsData.split('|');
     this.selectedDaysFilter = [];
     this.selectedDaysFilter = arrayChips;
     console.log(this.selectedDaysFilter);
+  }
+
+  removeFilter(index) {
+    for (const filter of this.hours) {
+      if (filter.id === index) {
+        filter.amChecked = false;
+        filter.pmChecked = false;
+      }
+    }
+    this.selectedDaysFilter.splice(index, 1);
   }
 
   // @HostListener('document:click', ['$event'])
