@@ -67,8 +67,9 @@
 
   }
   select,
-  input{
-    width: 100%;
+  .rule-name-input{
+    font-size: 12px;
+    width: 90%;
     height: 26px;
     border: 1px solid #E6E6E6;
     border-radius: 2px;
@@ -77,6 +78,9 @@
     font-size: 12px;
     letter-spacing: 0;
     line-height: 17px;
+  }
+  .ng-originating{
+    width: 200px;
   }
 }
 .no-data-found{

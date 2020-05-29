@@ -12,6 +12,8 @@ import { AllowanceThresholdModalComponent } from './allowance-threshold-modal/al
 import { AdvanceFiltersComponent } from './advance-filters/advance-filters.component';
 import { ApplicabletimeTodWodModalComponent } from './applicabletime-tod-wod-modal/applicabletime-tod-wod-modal.component';
 import { CounterTypeComponent } from './counter-type/counter-type.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 
 
 
@@ -26,16 +28,18 @@ import { CounterTypeComponent } from './counter-type/counter-type.component';
     ApplicabletimeTodWodModalComponent,
     CounterTypeComponent,
   ],
-            imports: [
-              BrowserModule,
-              FormsModule,
-              ReactiveFormsModule,
-              AppRoutingModule,
-              NgbPaginationModule,
-              NgbAlertModule,
-              NgbModule.forRoot(),
-              PerfectScrollbarModule
-            ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgbPaginationModule,
+    NgbAlertModule,
+    NgSelectModule,
+    NgOptionHighlightModule,
+    NgbModule.forRoot(),
+    PerfectScrollbarModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
