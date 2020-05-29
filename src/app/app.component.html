@@ -40,12 +40,16 @@
         </div>
       </div>
       <div class="action-items">
-        <div><span class="icon-filter"></span></div>
+        <div>
+          <span class="icon-filter" (click)="openAdvanceFilter()"></span>
+        </div>
         <div class="click-to-action" (click)="showRules()" >Add Rules</div>
       </div>
     </div>
   <app-usage-meeting [showCreateRule]="showCreateRule"></app-usage-meeting>
-
+  <app-advance-filters *ngIf="showAdvanceFilter"></app-advance-filters>
+<!--  <app-applicabletime-tod-wod-modal></app-applicabletime-tod-wod-modal>-->
+  <app-counter-type></app-counter-type>
   <router-outlet></router-outlet>
   </section>
 </div>

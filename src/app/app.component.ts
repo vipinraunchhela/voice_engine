@@ -9,6 +9,7 @@ export class AppComponent {
   query: string;
   showCreateRule = false;
   hideSearchdropDown = true;
+  showAdvanceFilter = false;
   items = [
     {
       id: 1,

@@ -1,0 +1,84 @@
+<ng-template #content let-modal>
+  <div class="title_modal header_modal">
+    <h2>Applicable Time (ToD/WoD)</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span class="icon-Combined-Shape-Copy-8"></span>
+    </button>
+  </div>
+  <div class="modal_body">
+    <div class="time_window">
+      <h2>Applicable Time Window</h2>
+      <div class="switch_button">
+        <span [class.active]="!isApplicableTimeWindow">No</span>
+        <label class="switch">
+          <input type="checkbox" (click)="onSwitch()" [checked]="isApplicableTimeWindow">
+          <span class="slider round"></span>
+        </label>
+        <span [class.active]="isApplicableTimeWindow">Yes</span>
+      </div>
+
+    </div>
+    <div [class.disabled]="!isApplicableTimeWindow">
+      <div class="select_box" [class.disable]="!isApplicableTimeWindow">
+        <div class="title">
+          Validity
+        </div>
+        <div class="select_dropdown" (click)="showHoursDropdown()">
+<!--          <ng-container *ngIf="">Select Hour</ng-container>-->
+          <ng-container *ngFor="let filter of selectedDaysFilter">
+            <div class="chip" *ngIf="filter !== ''">
+              {{filter}}
+              <span class="icon-cross_tags"></span>
+            </div>
+          </ng-container>
+        </div>
+        <div class="dropdown_list_wrap" [hidden]="!isHoursDropdown">
+          <perfect-scrollbar class="scrollbar dropdown_scrollbar">
+            <ul class="dropdown_list">
+              <li *ngFor="let hr of hours" [attr.id]="hr.id" (click)="chips()">
+                <span class="time_slot">{{hr.duration}}</span>
+                <label class="for_checkbox">
+                  <input type="checkbox" class="for_am checkbox" [checked]="hr.amChecked" (click)="onAmSelection(hr, 'am')">
+                  <div class="custom_checkbox">{{hr.am}}</div>
+                </label>
+                <label class="for_checkbox">
+                  <input type="checkbox" class="for_am checkbox" [checked]="hr.pmChecked" (click)="onAmSelection(hr, 'pm')">
+                  <div class="custom_checkbox">{{hr.pm}}</div>
+                </label>
+              </li>
+            </ul>
+          </perfect-scrollbar>
+        </div>
+      </div>
+      <div class="select_box" [class.disable]="!isApplicableTimeWindow">
+        <div class="title">
+          Days of the Week
+        </div>
+        <div class="select_dropdown" (click)="showDaysDropdown()">
+          Select Day
+        </div>
+        <div class="dropdown_list_wrap" [hidden]="!isDaysDropdown">
+          <ul class="dropdown_list">
+            <li *ngFor="let day of days">
+              <label class="for_checkbox">
+                <input type="checkbox" class="checkbox">
+                <div class="custom_checkbox">{{day}}</div>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button class="click-to-action save_action_btn" (click)="onSave()">Save</button>
+
+  </div>
+</ng-template>
+<div class="applybtn" (click)="open(content)">
+Select
+  <!--  <ng-container *ngIf="selectedDaysFilter.length == 0; else selected">-->
+<!--    Select-->
+<!--  </ng-container>-->
+<!--  <ng-template #selected>-->
+<!--    Yes-->
+<!--  </ng-template>-->
+</div>

@@ -1,0 +1,47 @@
+.entry_list {
+  margin-bottom: 33px;
+
+  .entry_checked {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    .for_checkbox {
+      max-width: max-content;
+    }
+
+    .entry_box {
+      margin-left: 18px;
+      box-sizing: border-box;
+      height: 26px;
+      width: 120px;
+      border: 1px solid #E6E6E6;
+      border-radius: 2px;
+      background-color: #FFFFFF;
+      color: #A5A5A5;
+      font-size: 12px;
+      line-height: 17px;
+      padding: 5px 8px;
+      outline: none;
+      margin-top: 4px;
+
+      &[readonly] {
+        background-color: #E6E6E6;
+      }
+
+      &::placeholder {
+        color: #A5A5A5;
+        opacity: 1;
+      }
+    }
+
+  }
+}
+
+
+::ng-deep {
+  .counter_modal .modal_body {
+    padding: 20px 0 0 0;
+  }
+}
+

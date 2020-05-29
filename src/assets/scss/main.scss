@@ -1,4 +1,7 @@
-.hyperlink{
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.hyperlink {
   color: orange;
   cursor: pointer;
 }
@@ -375,3 +378,118 @@
      }
    }
 
+
+.disabled {
+  cursor: not-allowed;
+  opacity: .4;
+}
+
+.disable {
+  pointer-events: none;
+}
+
+.for_checkbox {
+  margin: 0;
+
+  .custom_checkbox {
+    position: relative;
+    padding-left: 18px;
+    color: #333333;
+    font-size: 12px;
+    line-height: 17px;
+    cursor: pointer;
+
+    &:before {
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 1px solid #E6E6E6;
+      border-radius: 2px;
+      background-color: #FFFFFF;
+    }
+  }
+
+  .checkbox {
+    display: none;
+
+    &:checked + .custom_checkbox {
+      &:before {
+        border-color: #3986FA;
+        background-color: #3986FA;
+      }
+
+      &:after {
+        content: "\e91c";
+        font-family: "icomoon" !important;
+        font-size: 7px;
+        position: absolute;
+        left: 1.5px;
+        color: #fff;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Modal Scss
+.modal-content {
+  padding: 17px 20px;
+
+  .title_modal {
+    position: relative;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 24px;
+      padding-bottom: 19px;
+      border-bottom: 1px solid #E2E1C1;
+    }
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 1;
+      color: #C3AB7F;
+      outline: none;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .modal_body {
+    padding: 27px 10.5px 11.8px 10.5px;
+
+    .save_action_btn {
+      height: 30px;
+      width: 118px;
+      border-radius: 2px;
+      border: 0;
+      outline: none;
+      -webkit-appearance: none;
+    }
+  }
+}
+
+.applybtn{
+  color: #3986FA;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 17px;
+  cursor: pointer;
+}
