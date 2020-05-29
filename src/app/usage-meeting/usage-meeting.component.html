@@ -120,15 +120,14 @@
       </div>
     </td>
     <td>
-      <select name="">
-        <option value="">Select</option>
-      </select>
+      <app-applicabletime-tod-wod-modal></app-applicabletime-tod-wod-modal>
+    </td>
+    <td>
+      <app-counter-type></app-counter-type>
     </td>
     <td>
       <div class="applybtn" (click)="clearfields()">Apply</div>
       <div class="discard" (click)="clearfields()" >Discard</div>
-    </td>
-    <td>
     </td>
   </tr>
   <ng-container *ngFor="let rule of ruleList; let i=index">

@@ -1,0 +1,32 @@
+<ng-template #content let-modal>
+  <div class="title_modal header_modal">
+    <h2>Counter Type</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span class="icon-Combined-Shape-Copy-8"></span>
+    </button>
+  </div>
+  <div class="modal_body">
+    <div class="counter_entry_wrap">
+      <ul class="entry_list">
+        <li *ngFor="let counter of counters">
+          <div class="entry_checked">
+            <label class="for_checkbox">
+              <input type="checkbox" class="checkbox" (click)="enableTextBox(counter.name)" [checked]="counter.checked">
+              <div class="custom_checkbox">{{counter.name}}</div>
+            </label>
+            <input type="text" class="entry_box" placeholder="Enter" [readOnly]="!counter.checked">
+          </div>
+        </li>
+      </ul>
+    </div>
+    <button class="click-to-action save_action_btn" (click)="onSave()">Save</button>
+  </div>
+</ng-template>
+<div class="applybtn" (click)="open(content)">
+  <ng-container *ngIf="saveResult.length == 0; else selectedResults">
+    Select
+  </ng-container>
+  <ng-template #selectedResults>
+    {{this.saveResult.length}} Selected
+  </ng-template>
+</div>
