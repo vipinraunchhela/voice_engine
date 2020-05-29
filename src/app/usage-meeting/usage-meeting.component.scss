@@ -40,6 +40,9 @@
     letter-spacing: 0;
     line-height: 17px;
     vertical-align: middle;
+    .hyperlink{
+      font-weight: 600;
+    }
     .input-group {
       width: 100px;
       input{ width: calc(100% - 110px); }
@@ -67,7 +70,8 @@
 
   }
   select,
-  .rule-name-input{
+  .rule-name-input,
+  .input-group input{
     font-size: 12px;
     width: 90%;
     height: 26px;
@@ -131,7 +135,8 @@
   letter-spacing: 0;
   line-height: 17px;
 }
-.created-date{
+.created-date,
+.valid-thru{
   color: #707070;
   font-size: 10px;
   letter-spacing: 0;
@@ -237,3 +242,4 @@
     }
   }
 }
+

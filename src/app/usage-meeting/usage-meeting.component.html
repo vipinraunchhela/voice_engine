@@ -2,12 +2,13 @@
 <table class="table">
   <tr class="head-row">
     <th><span class="shorting">Rule Name <span class="icon-sort"></span></span></th>
-    <th>Originating Form</th>
-    <th>terminating To</th>
+    <th>Originating From</th>
+    <th>Terminating To</th>
     <th><span class="shorting">Allowance/Threshold <span class="icon-sort"></span></span></th>
     <th><span class="shorting">Priority <span class="icon-sort"></span></span></th>
-    <th><span class="shorting">Application Time <span class="icon-sort"></span></span></th>
-    <th><span class="shorting">Counter Type <span class="icon-sort"></span></span></th>
+    <th><span class="shorting">ToD/WoD <span class="icon-sort"></span></span></th>
+    <th><span class="shorting">Counters <span class="icon-sort"></span></span></th>
+    <th>Valid Thru</th>
     <th></th>
   </tr>
 <!--  edit mode-->
@@ -97,7 +98,7 @@
       <span class="hyperlink" (click)="openLg(content)"> Select</span>
     </td>
     <td>
-<!--      error-->
+  <!-- change priority-->
       <div class="input-group" [class.error-section]="showError">
         <input type="text" class="form-control" placeholder="Enter" [(ngModel)]="priority">
         <div class="input-group-append" [class.done]="verified">
@@ -125,6 +126,7 @@
     <td>
       <app-counter-type></app-counter-type>
     </td>
+    <td></td>
     <td>
       <div class="applybtn" (click)="clearfields()">Apply</div>
       <div class="discard" (click)="clearfields()" >Discard</div>
@@ -137,7 +139,13 @@
       <div class="created-date">Created By {{rule.createdBy}}, {{rule.createdDate}}</div>
     </td>
     <td>
-      {{rule.originatingFrom}}
+      <span [ngbTooltip]="originatingContent" placement="right">{{rule.originatingFrom}}</span>
+      <ng-template #originatingContent>
+        <div class="text-left">
+          <strong> South Korea </strong><br>
+          <strong>Sudan</strong>
+        </div>
+      </ng-template>
     </td>
     <td>
       {{rule.terminateTo}}
@@ -169,8 +177,30 @@
       </ng-template>
     </td>
     <td><span class="hyperlink">{{rule.priority}}</span></td>
-    <td><span class="hyperlink">{{rule.tod}}</span></td>
-    <td><span class="hyperlink">{{rule.counters}}</span></td>
+    <td><span class="hyperlink"  [ngbTooltip]="todTooltip" placement="left" tooltipClass="todTooltip">{{rule.tod}}</span>
+      <ng-template #todTooltip>
+        <div class="">
+          <div class="head-line"><span>Validty</span> </div>
+          <div class="coloumns">
+            <strong>0-1 Hr (AM,PM), 1-2 HrS (AM,PM)</strong>
+            <div><span>Days of the Week</span></div>
+            <strong>Monday, Tuesday, Wednesday</strong>
+          </div>
+        </div>
+      </ng-template>
+    </td>
+    <td><span class="hyperlink" [ngbTooltip]="countersTooltip" placement="left" tooltipClass="counterTooltip">{{rule.counters}}</span>
+      <ng-template #countersTooltip>
+        <div class="">
+          <div class="head-line"><span>Counter Type</span> </div>
+          <div class="coloumns">
+            <strong>Specific A to Specific B <br/>
+              Group A to Specific B</strong>
+          </div>
+        </div>
+      </ng-template>
+    </td>
+    <td class="valid-thru">15-may-2021<br>17:00</td>
     <td class="relative">
       <span class="icon-action_dots"  (click)="showPopover(i)"></span>
       <div class="custom-popover" *ngIf="i == selectedRow && showeditOptions">
